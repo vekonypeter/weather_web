@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'weathericons';
+    src: url('../fonts/weathericons.eot');
+    src: url('../fonts/weathericons.eot') format('embedded-opentype'), url('../fonts/weathericons.woff') format('woff'), url('../fonts/weathericons.ttf') format('truetype'), url('../fonts/weathericons.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.weathericons {
+    font-family: 'weathericons'; 
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    font-size: 1rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$weathericons: (
+    'clouds' : "\e111",
+    'rain'   : "\e112",
+    'snow'   : "\e113",
+    'sun'    : "\e114",
+    'clear'  : "\e114",
+    'wind'   : "\e115"
+);
+
+@each $name, $char in $weathericons {
+    .weathericons-#{$name} {
+        &:before {
+            content: "#{$char}";
+        }
+    }
+}

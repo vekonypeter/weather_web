@@ -1,0 +1,24 @@
+{
+  "title": "Weather Application",
+  "name": "weatherapp",
+  "version": "1.0.0",
+  "description": "A weather application using OpenWeatherMap API",
+  "keywords": [],
+  "homepage": "http://vekonypeter.azurewebsites.net",
+  "license": "MIT",
+  "author": "Vékony Péter",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vekonypeter/weatherapp"
+  },
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.3.1"
+  },
+  "devDependencies": {
+    "browser-sync": "2.23.6",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0"
+  }
+}

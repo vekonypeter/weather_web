@@ -1,0 +1,418 @@
+.cl-white {
+  color: #fff;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.cl-gray-100 {
+  color: #f8f9fa;
+}
+
+.bg-gray-100 {
+  background-color: #f8f9fa;
+}
+
+.cl-gray-200 {
+  color: #e9ecef;
+}
+
+.bg-gray-200 {
+  background-color: #e9ecef;
+}
+
+.cl-gray-300 {
+  color: #dee2e6;
+}
+
+.bg-gray-300 {
+  background-color: #dee2e6;
+}
+
+.cl-gray-400 {
+  color: #ced4da;
+}
+
+.bg-gray-400 {
+  background-color: #ced4da;
+}
+
+.cl-gray-500 {
+  color: #adb5bd;
+}
+
+.bg-gray-500 {
+  background-color: #adb5bd;
+}
+
+.cl-gray-600 {
+  color: #868e96;
+}
+
+.bg-gray-600 {
+  background-color: #868e96;
+}
+
+.cl-gray-700 {
+  color: #495057;
+}
+
+.bg-gray-700 {
+  background-color: #495057;
+}
+
+.cl-gray-800 {
+  color: #343a40;
+}
+
+.bg-gray-800 {
+  background-color: #343a40;
+}
+
+.cl-gray-900 {
+  color: #212529;
+}
+
+.bg-gray-900 {
+  background-color: #212529;
+}
+
+.cl-black {
+  color: #000;
+}
+
+.bg-black {
+  background-color: #000;
+}
+
+.cl-blue {
+  color: #007bff;
+}
+
+.bg-blue {
+  background-color: #007bff;
+}
+
+.cl-indigo {
+  color: #6610f2;
+}
+
+.bg-indigo {
+  background-color: #6610f2;
+}
+
+.cl-purple {
+  color: #6f42c1;
+}
+
+.bg-purple {
+  background-color: #6f42c1;
+}
+
+.cl-pink {
+  color: #e83e8c;
+}
+
+.bg-pink {
+  background-color: #e83e8c;
+}
+
+.cl-firebrick {
+  color: firebrick;
+}
+
+.bg-firebrick {
+  background-color: firebrick;
+}
+
+.cl-red {
+  color: #dc3545;
+}
+
+.bg-red {
+  background-color: #dc3545;
+}
+
+.cl-orange {
+  color: #BD5D38;
+}
+
+.bg-orange {
+  background-color: #BD5D38;
+}
+
+.cl-yellow {
+  color: #ffc107;
+}
+
+.bg-yellow {
+  background-color: #ffc107;
+}
+
+.cl-beige {
+  color: beige;
+}
+
+.bg-beige {
+  background-color: beige;
+}
+
+.cl-green {
+  color: #28a745;
+}
+
+.bg-green {
+  background-color: #28a745;
+}
+
+.cl-teal {
+  color: #20c997;
+}
+
+.bg-teal {
+  background-color: #20c997;
+}
+
+.cl-cyan {
+  color: #17a2b8;
+}
+
+.bg-cyan {
+  background-color: #17a2b8;
+}
+
+.cl-sky {
+  color: lightskyblue;
+}
+
+.bg-sky {
+  background-color: lightskyblue;
+}
+
+.cl-darkblue75 {
+  color: rgba(12, 101, 136, 0.75);
+}
+
+.bg-darkblue75 {
+  background-color: rgba(12, 101, 136, 0.75);
+}
+
+.cl-darkblue {
+  color: #0c6588;
+}
+
+.bg-darkblue {
+  background-color: #0c6588;
+}
+
+.cl-turquoise {
+  color: turquoise;
+}
+
+.bg-turquoise {
+  background-color: turquoise;
+}
+
+.fs-25 {
+  font-size: 0.25rem;
+}
+
+.fs-5 {
+  font-size: 0.5rem;
+}
+
+.fs-75 {
+  font-size: 0.75rem;
+}
+
+.fs-85 {
+  font-size: 0.85rem;
+}
+
+.fs-1 {
+  font-size: 1rem;
+}
+
+.fs-125 {
+  font-size: 1.25rem;
+}
+
+.fs-15 {
+  font-size: 1.5rem;
+}
+
+.fs-175 {
+  font-size: 1.75rem;
+}
+
+.fs-2 {
+  font-size: 2rem;
+}
+
+.fs-225 {
+  font-size: 2.25rem;
+}
+
+.fs-25 {
+  font-size: 2.5rem;
+}
+
+.fs-275 {
+  font-size: 2.75rem;
+}
+
+.fs-3 {
+  font-size: 3rem;
+}
+
+.fs-325 {
+  font-size: 3.25rem;
+}
+
+.fs-35 {
+  font-size: 3.5rem;
+}
+
+.fs-375 {
+  font-size: 3.75rem;
+}
+
+.fs-4 {
+  font-size: 4rem;
+}
+
+@font-face {
+  font-family: "renogare";
+  src: url("../fonts/Renogare.ttf") format("truetype"), url("../fonts/Bebas.woff") format("woff");
+}
+
+.ff-reno {
+  font-family: "renogare";
+}
+
+.ff-bootstrap {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.navbar {
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff;
+}
+
+.nav-item {
+  cursor: pointer;
+}
+
+.font-shadow-strong {
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.font-shadow-fine {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+#facebook {
+  position: fixed;
+  top: 100px;
+  left: 0px;
+  background-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.5);
+  padding: 6px 10px;
+  z-index: 100;
+}
+
+.float-top {
+  position: absolute;
+  top: 0;
+}
+
+.forecast-icon {
+  height: 130px;
+  margin-top: -20px;
+}
+
+.forecast-icon > i {
+  font-size: 9rem;
+}
+
+.forecastBox-inner {
+  background: linear-gradient(135deg, rgba(12, 101, 136, 0.2), #0c6588);
+  text-align: center;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 40px;
+}
+
+.forecast-details {
+  background-color: #0c6588;
+  padding-top: 5px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+}
+
+.forecast-details-today {
+  background-color: #ffc107;
+  color: #000;
+}
+
+.forecast-details-open {
+  top: 0;
+}
+
+.container-full {
+  max-width: 100%;
+}
+
+#current {
+  padding-top: 20vh;
+  padding-bottom: 10vh;
+  min-height: calc(50vh);
+}
+
+#forecast {
+  min-height: calc(50vh - 55px);
+}
+
+#location {
+  min-height: 75vh;
+}
+
+#location-map {
+  width: 100%;
+  min-height: 400px;
+  border-radius: 20px;
+  border: 0px;
+}
+
+#cityForm > input {
+  margin-bottom: .35em;
+}
+
+.navbar-brand-sub {
+  line-height: 0.85rem;
+}
+
+.init-hidden {
+  display: none;
+}
+
+.loader-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

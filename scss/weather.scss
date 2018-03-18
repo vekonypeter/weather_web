@@ -1,0 +1,129 @@
+@import "_colors";
+@import "_fontsizes";
+
+@font-face {
+    font-family: "renogare";
+    src: url("../fonts/Renogare.ttf") format('truetype'), url("../fonts/Bebas.woff") format('woff');
+} 
+
+.ff-reno {
+    font-family: "renogare";
+}
+
+.ff-bootstrap {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+body {}
+
+.navbar {
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: map-get($colors , 'white');
+}
+
+.nav-item {
+    cursor: pointer;
+}
+
+.font-shadow-strong {
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.font-shadow-fine {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+#facebook {
+    position: fixed;
+    top: 100px;
+    left: 0px;
+    background-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.5);
+    padding: 6px 10px;
+    z-index: 100;
+}
+
+.float-top {
+    position: absolute;
+    top: 0;
+}
+
+.forecast-icon {
+    height: 130px;
+    margin-top: -20px
+}
+
+.forecast-icon>i {
+    font-size: 9rem;
+}
+
+.forecastBox-inner {
+    background: linear-gradient(135deg, rgba(12, 101, 136, 0.2), rgb(12, 101, 136));
+    text-align: center;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 40px;
+}
+
+.forecast-details {
+    background-color: map-get($colors, 'darkblue');
+    padding-top: 5px;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+}
+
+.forecast-details-today {
+    background-color: map-get($colors, 'yellow');
+    color: map-get($colors, 'black');
+}
+
+.forecast-details-open {
+    top: 0;
+}
+
+.container-full {
+    max-width: 100%;
+}
+
+#current {
+    padding-top: 20vh;
+    padding-bottom: 10vh;
+    min-height: calc(50vh);
+}
+
+#forecast {
+    min-height: calc(50vh - 55px);
+}
+
+#location {
+    min-height: 75vh;
+}
+
+#location-map {
+    width: 100%;
+    min-height: 400px;
+    border-radius: 20px;
+    border: 0px;
+}
+
+#cityForm>input {
+    margin-bottom: .35em;
+}
+
+.navbar-brand-sub {
+    line-height: 0.85rem;
+}
+
+.init-hidden {
+    display: none   ;
+}
+
+@import '_loader.scss';

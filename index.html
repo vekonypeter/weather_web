@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+
+<head>
+    <title>Weather Forecast</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:url" content="http://vdsweather.azurewebsites.net" />
+    <meta property="og:title" content="vekonydoktor's WEATHER" />
+    <meta property="og:description" content="Current weather and forecast data from all over the world with automatic localization."
+    />
+
+    <!-- ################## STYLES ################## -->
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+
+    <!-- jQuery UI -->
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.min.css">
+
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+
+    <!-- Custom -->
+    <link rel="stylesheet" href="css/weather.css">
+
+    <!-- Weather icons -->
+    <link rel="stylesheet" href="css/weathericons.css">
+
+    <!-- ############################################ -->
+
+</head>
+
+<body class="bg-sky">
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id))
+                return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/hu_HU/sdk.js#xfbml=1&version=v2.8";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+    <div class="loader-screen">
+        <img src="img/loader_2.gif" alt="loading" width="120" />
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-darkblue fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger ff-reno" href="#page-top">
+                <span class="float-left">
+                    WEATHER FORECAST
+                </span>
+                <div class="navbar-brand-sub ff-reno cl-white ml-2 d-none d-sm-block float-left">
+                    <span class='fs-75 ff-bootstrap'>by</span>
+                    <span class='cl-yellow fs-85'>Vékony Péter</span>
+                    <br>
+                    <span class='fs-75 ff-bootstrap'>using</span>
+                    <span class='cl-sky fs-85'>OpenWeatherMap API</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto fs-1">
+                    <li class="nav-item">
+                        <a tabindex='0' class="nav-link" data-html="true" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="
+                            <div class='form-inline mb-2'>
+                                <label for='city'>Type an address:</label><br>
+                                <input disabled class='form-control' id='city' type='text' placeholder='City'>
+                                <button disabled class='btn btn-info' onclick='SearchCity()'>Go</button>
+                            </div>
+                            <div class='text-center'>
+                                <label>or</label><br>
+                                <button class='btn btn-success' onclick='LocateMe()'>
+                                    <i class='fa fa-crosshairs'></i>
+                                    Locate Me!
+                                </button>
+                            </div>">
+                            <i class="fa fa-crosshairs"></i>
+                            Location
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a tabindex='1' class="nav-link" data-html="true" data-toggle="popover" data-trigger="focus" data-placement="bottom" data-content="
+                            <div class='form-group'>
+                                <label>Choose a unit system:</label>
+                                <div class='form-check'>
+                                    <label class='form-check-label'>
+                                        <input disabled class='form-check-input' type='radio' name='unitRadios' id='metricRadio' value='metric' checked>
+                                        Metric
+                                    </label>
+                                </div>
+                                <div class='form-check'>
+                                    <label class='form-check-label'>
+                                        <input disabled class='form-check-input' type='radio' name='unitRadios' id='imperialRadio' value='imperial'>
+                                        Imperial
+                                    </label>
+                                </div><br>
+                                <div class='text-center'>
+                                    <button disabled class='btn btn-success'>
+                                        Submit
+                                    </button>
+                                </div>            
+                            </div>">
+                            <i class="fa fa-thermometer"></i>
+                            Unit
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a tabindex='2' class="nav-link" href="https://vekonypeter.azurewebsites.net/#projects" target="_blank">
+                            <i class="fa fa-info-circle"></i>
+                            About
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="facebook">
+        <div class="fb-like" data-href="http://vdsweather.azurewebsites.net" data-layout="box_count" data-action="like" data-size="small"
+            data-show-faces="true" data-share="true"></div>
+    </div>
+
+    <section id="current" class="text-center cl-white ff-reno init-hidden">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="temperatureBox" class="font-shadow-strong">
+                        <span id="temperature" class="display-2"></span>
+                        &nbsp;
+                        <span id="unit" class="h2 float-top"></span>
+                    </div>
+                    <p id="description" class="h2"></p>
+                    <p id="timestamp"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="forecast" class="text-center cl-white ff-reno init-hidden">
+        <div class="container container-full">
+            <div class="row align-items-center justify-content-center">
+                <div class="forecastBox col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+                    <div class="forecastBox-inner">
+                        <div class="forecast-icon">
+                            <i class='weathericons'></i>
+                        </div>
+                        <div class="forecast-temp"></div>
+                        <div class="forecast-desc"></div>
+                        <br>
+                        <div class="forecast-details forecast-details-today">
+                            <div class="row px-3">
+                                <div class="col-12 cl-gray-800">
+                                    <div class="det-day h4 cl-black mb-0"></div>
+                                    <div class="det-date cl-firebrick mt-1 mb-2"></div>
+                                    <div class="text-left">Humidity</div>
+                                    <div class="det-hum cl-white text-right"></div>
+                                    <div class="text-left">Pressure</div>
+                                    <div class="det-pres cl-white text-right"></div>
+                                    <div class="text-left">Wind speed</div>
+                                    <div class="det-windsp cl-white text-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="forecastBox col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+                    <div class="forecastBox-inner">
+                        <div class="forecast-icon">
+                            <i class='weathericons'></i>
+                        </div>
+                        <div class="forecast-temp"></div>
+                        <div class="forecast-desc"></div>
+                        <br>
+                        <div class="forecast-details">
+                            <div class="row px-3">
+                                <div class="col-12">
+                                    <div class="det-day h4 mb-0"></div>
+                                    <div class="det-date cl-turquoise mt-1 mb-2"></div>
+                                    <div class="text-left cl-gray-400">Humidity</div>
+                                    <div class="det-hum text-right"></div>
+                                    <div class="text-left cl-gray-400">Pressure</div>
+                                    <div class="det-pres text-right"></div>
+                                    <div class="text-left cl-gray-400">Wind speed</div>
+                                    <div class="det-windsp text-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="forecastBox col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+                    <div class="forecastBox-inner">
+                        <div class="forecast-icon">
+                            <i class='weathericons'></i>
+                        </div>
+                        <div class="forecast-temp"></div>
+                        <div class="forecast-desc"></div>
+                        <br>
+                        <div class="forecast-details">
+                            <div class="row px-3">
+                                <div class="col-12">
+                                    <div class="det-day h4 mb-0"></div>
+                                    <div class="det-date cl-turquoise mt-1 mb-2"></div>
+                                    <div class="text-left cl-gray-400">Humidity</div>
+                                    <div class="det-hum text-right"></div>
+                                    <div class="text-left cl-gray-400">Pressure</div>
+                                    <div class="det-pres text-right"></div>
+                                    <div class="text-left cl-gray-400">Wind speed</div>
+                                    <div class="det-windsp text-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="forecastBox col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+                    <div class="forecastBox-inner">
+                        <div class="forecast-icon">
+                            <i class='weathericons'></i>
+                        </div>
+                        <div class="forecast-temp"></div>
+                        <div class="forecast-desc"></div>
+                        <br>
+                        <div class="forecast-details">
+                            <div class="row px-3">
+                                <div class="col-12">
+                                    <div class="det-day h4 mb-0"></div>
+                                    <div class="det-date cl-turquoise mt-1 mb-2"></div>
+                                    <div class="text-left cl-gray-400">Humidity</div>
+                                    <div class="det-hum text-right"></div>
+                                    <div class="text-left cl-gray-400">Pressure</div>
+                                    <div class="det-pres text-right"></div>
+                                    <div class="text-left cl-gray-400">Wind speed</div>
+                                    <div class="det-windsp text-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="forecastBox col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+                    <div class="forecastBox-inner">
+                        <div class="forecast-icon">
+                            <i class='weathericons'></i>
+                        </div>
+                        <div class="forecast-temp"></div>
+                        <div class="forecast-desc"></div>
+                        <br>
+                        <div class="forecast-details">
+                            <div class="row px-3">
+                                <div class="col-12">
+                                    <div class="det-day h4 mb-0"></div>
+                                    <div class="det-date cl-turquoise mt-1 mb-2"></div>
+                                    <div class="text-left cl-gray-400">Humidity</div>
+                                    <div class="det-hum text-right"></div>
+                                    <div class="text-left cl-gray-400">Pressure</div>
+                                    <div class="det-pres text-right"></div>
+                                    <div class="text-left cl-gray-400">Wind speed</div>
+                                    <div class="det-windsp text-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="forecastBox col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
+                    <div class="forecastBox-inner">
+                        <div class="forecast-icon">
+                            <i class='weathericons'></i>
+                        </div>
+                        <div class="forecast-temp"></div>
+                        <div class="forecast-desc"></div>
+                        <br>
+                        <div class="forecast-details">
+                            <div class="row px-3">
+                                <div class="col-12">
+                                    <div class="det-day h4 mb-0"></div>
+                                    <div class="det-date cl-turquoise mt-1 mb-2"></div>
+                                    <div class="text-left cl-gray-400">Humidity</div>
+                                    <div class="det-hum text-right"></div>
+                                    <div class="text-left cl-gray-400">Pressure</div>
+                                    <div class="det-pres text-right"></div>
+                                    <div class="text-left cl-gray-400">Wind speed</div>
+                                    <div class="det-windsp text-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="location" class="cl-white ff-reno mt-5 init-hidden">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-md-12 h3 font-shadow-fine">
+                    <span class="fa fa-compass cl-firebrick fs-25"></span>
+                    <span id="location-add"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2">
+                    <h4 class="cl-darkblue">Longitude:</h4>
+                    <div id="location-o-lng" class="text-right fs-125"></div>
+                    <div id="location-w-lng" class="text-right fs-85"></div>
+                    <hr>
+                    <h4 class="cl-darkblue">Latitude:</h4>
+                    <div id="location-o-lat" class="text-right fs-125"></div>
+                    <div id="location-w-lat" class="text-right fs-85 cl-beige"></div>
+                    <hr>
+                    <h4 class="cl-darkblue">Accuracy:</h4>
+                    <div id="location-acc" class="text-right fs-125"></div>
+                </div>
+                <div class="col-lg-10 pt-4 pt-lg-0">
+                    <iframe id="location-map" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <br>
+    <br>
+    <footer class="py-5 bg-darkblue init-hidden">
+        <div class="container">
+            <p class="m-0 text-center text-white">&copy; Vékony Péter 2018</p>
+        </div>
+    </footer>
+
+    <!-- ################## SCRIPTS ################## -->
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- jQuery UI -->
+    <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <!-- Custom -->
+    <script src="js/globals.js"></script>
+    <script src="js/apicalls.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- ############################################# -->
+</body>
+
+</html>
