@@ -67,10 +67,10 @@ function fillPage(data, callback) {
     $("#timestamp").html(data.timestamp.toLocaleString());
 
     $("#location-add").html(data.location.original.address);
-    $("#location-o-lat").html(`${data.location.original.lat}°`);
-    $("#location-o-lng").html(`${data.location.original.lng}°`);
-    $("#location-w-lat").html(`${data.location.weather.lat}°`);
-    $("#location-w-lng").html(`${data.location.weather.lng}°`);
+    $("#location-o-lat").html(`${round(data.location.original.lat, 7)}°`);
+    $("#location-o-lng").html(`${round(data.location.original.lng, 7)}°`);
+    $("#location-w-lat").html(`${round(data.location.weather.lat, 7)}°`);
+    $("#location-w-lng").html(`${round(data.location.weather.lng, 7)}°`);
     $("#location-acc").html(`${data.location.original.acc} m`);
     $("#location-map").attr("src", URL_MAPSIFRAME + data.location.original.lat + "," + data.location.original.lng);
 
